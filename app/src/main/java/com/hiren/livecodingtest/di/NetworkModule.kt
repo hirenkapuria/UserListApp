@@ -2,6 +2,7 @@ package com.hiren.livecodingtest.di
 
 import com.hiren.livecodingtest.data.remote.ApiService
 import com.hiren.livecodingtest.data.repository.UserRepositoryImp
+import com.hiren.livecodingtest.domin.UserRepository
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
 import dagger.Provides
@@ -44,7 +45,13 @@ object NetworkModule{
 
     @Provides
     @Singleton
-    fun provideRepository(apiService: ApiService): UserRepositoryImp {
+    fun provideApiService(retrofit: Retrofit): ApiService {
+        return retrofit.create(ApiService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideRepository(apiService: ApiService): UserRepository {
         return UserRepositoryImp(apiService)
     }
 

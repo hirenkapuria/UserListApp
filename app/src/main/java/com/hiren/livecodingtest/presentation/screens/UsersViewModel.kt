@@ -8,11 +8,9 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import java.util.Objects
 import javax.inject.Inject
 
 sealed class UIState{
-
     object Loading: UIState()
     data class Success(val users: List<UserModel>): UIState()
     data class Error(val message: String): UIState()
